@@ -1,0 +1,7 @@
+This software depends following libraries to work.
+
+#-------------------------------------------------------------------------------
+# Mutagen
+#-------------------------------------------------------------------------------
+Mutagen is a Python module to handle audio metadata.
+http://mutagen.readthedocs.io/en/latest/
