@@ -3,6 +3,6 @@
 pushd ..\..\
 
 call venv\Scripts\activate.bat
-pip install -r win32\requirements.txt
+pip install -r os_specific\win32\requirements.txt
 
 popd
