@@ -1,5 +1,6 @@
 # conding: utf-8
 
+import codecs
 import glob
 import os
 import sys
@@ -19,8 +20,8 @@ input_dir = sys.argv[1]
 input_dir = path.abspath( input_dir )
 file_list = find_all_files( input_dir )
 
-log_fp     = open( file=path.join( input_dir, "tag2filename_log.txt" ), mode='w' )
-err_log_fp = open( file=path.join( input_dir, "tag2filename_err_log.txt" ), mode='w' )
+log_fp     = codecs.open( filename=path.join( input_dir, "tag2filename_log.txt" ), mode='w', encoding='utf-8' )
+err_log_fp = codecs.open( filename=path.join( input_dir, "tag2filename_err_log.txt" ), mode='w', encoding='utf-8' )
 
 try:
     for i in file_list:
@@ -40,9 +41,9 @@ try:
 
             try:
                 os.rename( src=i, dst=new_path )
-                print( "{src} -> {dst}".format( src=i, dst=new_path ), file=log_fp )
+                log_fp.write( "{src} -> {dst}\n".format( src=i, dst=new_path ) )
             except Exception as e:
-                print( "Disc:{disc}, Track:{track}, Path={path}".format( disc=disk_num[0], track=track_num[ 0 ], path=i), file=err_log_fp )
+                err_log_fp.write( "Disc:{disc}, Track:{track}, Path={path}\n".format( disc=disk_num[0], track=track_num[ 0 ], path=i) )
 finally:
     log_fp.close()
     err_log_fp.close()
