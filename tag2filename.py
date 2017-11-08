@@ -29,12 +29,8 @@ try:
             mp4       = MP4( i )
             tags      = mp4.tags
             track_num = tags[ 'trkn' ][ 0 ]
-            disk_num  = (1,1)
 
-            if( 'disk' in tags ):
-                disk_num = tags[ 'disk' ]
-
-            new_name  = "track_%02d_%02d%s" % ( disk_num[ 0 ], track_num[ 0 ], SUFFIX )
+            new_name  = "track_%02d%s" % ( track_num[ 0 ], SUFFIX )
 
             dir_name  = path.dirname( i )
             new_path  = path.join( dir_name, new_name )
@@ -43,7 +39,7 @@ try:
                 os.rename( src=i, dst=new_path )
                 log_fp.write( "{src} -> {dst}\n".format( src=i, dst=new_path ) )
             except Exception as e:
-                err_log_fp.write( "Disc:{disc}, Track:{track}, Path={path}\n".format( disc=disk_num[0], track=track_num[ 0 ], path=i) )
+                err_log_fp.write( "Track:{track}, Path={path}\n".format( track=track_num[ 0 ], path=i) )
 finally:
     log_fp.close()
     err_log_fp.close()
